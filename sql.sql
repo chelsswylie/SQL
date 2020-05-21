@@ -95,10 +95,9 @@ ON Customers.Customer_ID = orders.Customer_ID;
 -- 15. Use a join to get the ship city and ship country of all the orders which are associated
 -- with an employee who is in London.
 
-SELECT employee_id, 
-FROM orders,
-LEFT JOIN employees on orders.employee_id = employees.employee_id
-WHERE city LIKE 'London%'
+SELECT orders.ship_city, orders.ship_country, employees.city
+FROM orders
+INNER JOIN employees ON orders.ship_city = employees.city WHERE employees.city = 'London';
 
 -- 16. Use a join to get the ship name of all orders that include a discontinued product. (See
 -- orders, order_details, and products. 1 means discontinued.)
